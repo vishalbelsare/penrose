@@ -460,7 +460,7 @@ export const isCustom = (x: DiffVar): boolean => {
 
 export const energyAndGradAD = (f: (...arg: DiffVar[]) => DiffVar, xs: number[], xsVarsInit: DiffVar[]) => {
   // NOTE: mutates xsVars
-  // console.log("energy and grad with vars", xs);
+  console.log("energy and grad with vars", xs, xsVarsInit);
 
   // Questions/assumptions: TODO 
   // Who calls the energy?
@@ -482,8 +482,10 @@ export const energyAndGradAD = (f: (...arg: DiffVar[]) => DiffVar, xs: number[],
 
   // This will take the grad of all of them, mutating xsVars to store grad values (OR lookup if already cached -- TODO note this!)
   const dxs = xsVars.map(gradAD);
-  // console.log("xsVars with grads", xsVars);
+  console.log("xsVars with grads", xsVars);
   const gradxs = xsVars.map((x: DiffVar) => fromJust(x.gradVal));
+
+  throw Error("test");
 
   return { energyVal: energyZ, gradVal: gradxs };
 };
